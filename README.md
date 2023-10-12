@@ -5,10 +5,9 @@
 We have included a project named `Test521` to demonstrate the recurring bug encountered during the Android packaging process. This project serves as a practical example to reproduce the issue for further investigation and troubleshooting.
 
 ### Project Structure:
-- Location: `Path/To/Test521`
+- Location: `Test521`
 - Unreal Engine Version: 5.2.1
 - Target Platform: Android (ASTC)
-- Relevant Assets and Blueprints: `Description/Location`
 
 ### Reproduction Steps:
 1. Open the `Test521` project in Unreal Engine 5.2.1.
