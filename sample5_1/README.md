@@ -35,11 +35,34 @@ The example below illustrates how to incorporate haptic feedback when a player p
 <img width="453" alt="image" src="https://github.com/bhaptics/ue-samples/assets/1837913/afe0df8a-3feb-44ac-90d1-f155d9c96d4c">
 
 
-### 4. Adding Rotation to the Haptic Event
+### 4-1. Adding Rotation to the Haptic Event with Blueprints
 You can employ the 'Custom Project To Vest' function to calculate the angle between the contact point and the player component. 
 
 <img width="874" alt="image" src="https://github.com/bhaptics/ue-samples/assets/1837913/d520062e-a634-4e2c-8413-65e92a0a0514">
 
+### 4-2. Adding Rotation to the Haptic Event with C++
+You can employ the 'Helper Function' function to calculate the angle between the contact point and the player component. 
+Example of a helper function
+```C++
+//if use C++
+
+//case : use Location
+FBhapticsRotationOption HitPoint = UBhapticsSDK2::ProjectToVestLocation(HitPoint, Player->GetActorLocation(), Player->GetActorRotation());
+UBhapticsSDK2::PlayHapticWithOption("hit", 1.0f, 1.0f, HitPoint.OffsetAngleX, HitPoint.OffsetY);
+
+//case : use Callback Function
+void Sample::OnHit(UPrimitiveComponent* PlayerComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+
+	FBhapticsRotationOption HitPoint = UBhapticsSDK2::ProjectToVest(Hit.Location, PlayerComponent);
+
+	//Use this function. if you want customize up vectors and forward vectors.
+	FBhapticsRotationOption HitPoint = UBhapticsSDK2::CustomProjectToVest(Hit.Location, PlayerComponent);
+
+
+	UBhapticsSDK2::PlayHapticWithOption("hit", 1.0f, 1.0f, HitPoint.OffsetAngleX, HitPoint.OffsetY);
+}
+```
 
 ### Conclusion
 
