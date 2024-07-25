@@ -9,6 +9,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "BhapticsSDK2.h"
 
 // Sets default values for this component's properties
 UTP_WeaponComponent::UTP_WeaponComponent()
@@ -42,6 +43,9 @@ void UTP_WeaponComponent::Fire()
 	
 			// Spawn the projectile at the muzzle
 			World->SpawnActor<Asample5_3Projectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+
+			// Play Haptic Event
+			UBhapticsSDK2::PlayHapticWithOption("firerifle_right"); //if you want, you can add params
 		}
 	}
 	
